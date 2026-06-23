@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: tg-market
+    runtime: docker
+    plan: free
+    region: frankfurt
+    healthCheckPath: /healthz
+    # Free tier has no persistent disk -> SQLite resets on cold restart.
+    # OK for getting started / testing. For production with real money use Neon
+    # Postgres (separate migration) or upgrade to Starter plan ($7/mo) with a disk.
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: CRYPTO_PAY_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: WEBAPP_URL
+        sync: false
+      - key: BASE_URL
+        sync: false
+      - key: WEBHOOK_MODE
+        value: "1"
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: DB_PATH
+        value: "/tmp/market.db"
+      - key: RUB_USDT_RATE
+        value: "95"

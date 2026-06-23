@@ -1,0 +1,24 @@
+app = "tg-market"
+primary_region = "fra"
+
+[build]
+
+[env]
+  HOST = "0.0.0.0"
+  PORT = "8080"
+  DB_PATH = "/data/market.db"
+
+[[mounts]]
+  source = "market_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "off"      # bot must always stay up to poll
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
