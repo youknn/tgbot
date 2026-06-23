@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Магазин</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <button class="iconbtn" id="backBtn" aria-label="назад" hidden>‹</button>
+    <h1 id="title">Магазин</h1>
+    <button class="iconbtn" id="ordersBtn" aria-label="мои покупки">🧾</button>
+  </header>
+
+  <main id="view"></main>
+
+  <div id="toast" class="toast" hidden></div>
+  <div id="loader" class="loader" hidden><div class="spinner"></div></div>
+</div>
+
+<template id="tpl-home">
+  <section>
+    <div class="hero">
+      <div class="hero-emoji">🎯</div>
+      <div>
+        <div class="hero-title">Привет, <span data-hero-name>друг</span>!</div>
+        <div class="hero-sub">Выбирай категорию — ключ придёт мгновенно после оплаты.</div>
+      </div>
+    </div>
+    <h2 class="section-title">Категории</h2>
+    <div class="grid cats" data-cats></div>
+  </section>
+</template>
+
+<template id="tpl-products">
+  <section>
+    <h2 class="section-title" data-cat-title>—</h2>
+    <div class="grid prods" data-prods></div>
+  </section>
+</template>
+
+<template id="tpl-product">
+  <section class="product-detail">
+    <div class="pd-head">
+      <div class="pd-emoji" data-emoji>🎯</div>
+      <div>
+        <div class="pd-title" data-name></div>
+        <div class="pd-meta">
+          <span class="chip" data-duration></span>
+          <span class="chip stock" data-stock></span>
+        </div>
+      </div>
+    </div>
+    <p class="pd-desc" data-desc></p>
+
+    <div class="promo">
+      <input type="text" id="promoInput" placeholder="ПРОМОКОД" autocomplete="off" maxlength="64" />
+      <button class="btn ghost" id="promoBtn">Применить</button>
+    </div>
+    <div class="promo-result" id="promoResult" hidden></div>
+
+    <div class="price-row">
+      <div>
+        <div class="price-label">Цена</div>
+        <div class="price">
+          <span class="rub" data-rub>—</span>
+          <span class="sep">·</span>
+          <span class="stars" data-stars>—</span> ⭐
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" id="buyStars">⭐ Оплатить звёздами</button>
+      <button class="btn secondary" id="buyCrypto">💵 Оплатить криптой</button>
+    </div>
+
+    <div class="hint">После оплаты ключ автоматически придёт сюда и в чат бота.</div>
+  </section>
+</template>
+
+<template id="tpl-orders">
+  <section>
+    <h2 class="section-title">🧾 Мои покупки</h2>
+    <div id="ordersList"></div>
+  </section>
+</template>
+
+<script src="app.js?v=1"></script>
+</body>
+</html>
